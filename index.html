@@ -42,15 +42,18 @@ header {
   justify-content: center;
   align-items: center;
   z-index: 9999;
+  padding: 1rem;
 }
 .popup-content {
   background: #111;
   padding: 20px 25px;
   border-radius: 15px;
   max-width: 500px;
-  width: 90%;
+  width: 100%;
   text-align: center;
   animation: blastIn 1s ease-out;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 .popup-content h2 { color: #ffd700; margin-bottom: 10px; }
 .popup-content p { margin-bottom: 20px; line-height: 1.5; }
@@ -66,7 +69,7 @@ header {
 
 /* Form */
 .career-form {
-  max-width: 800px;
+  max-width: 700px;
   margin: 2rem auto;
   background: rgba(255,255,255,0.05);
   padding: 20px;
@@ -74,7 +77,7 @@ header {
 }
 .career-form h2 { color: #ffd700; text-align: center; margin-bottom: 20px; }
 .career-form label { display: block; margin-top: 10px; font-weight: 600; }
-.career-form input, .career-form select { width: 100%; padding: 8px; border-radius: 5px; border: none; margin-top: 5px; }
+.career-form input, .career-form select { width: 100%; padding: 10px; border-radius: 5px; border: none; margin-top: 5px; box-sizing: border-box; }
 .career-form input[type="file"] { color: #fff; }
 .career-form button {
   margin-top: 20px;
@@ -85,6 +88,11 @@ header {
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
+  width: 100%;
+}
+.highlight-menu {
+  color: #ffd700;
+  font-weight: bold;
 }
 
 /* Blast animation */
@@ -99,6 +107,9 @@ header {
   .nav-links { display: none; flex-direction: column; width: 100%; background-color: #1b2d3b; padding: 1rem 0; }
   .nav-links.show { display: flex; }
   .hamburger { display: block; }
+  .career-form { padding: 15px; margin: 1rem; }
+  .career-form button { padding: 10px; }
+  .popup-content { padding: 15px; }
 }
 </style>
 </head>
@@ -112,15 +123,15 @@ header {
   </div>
   <button class="hamburger" onclick="toggleMenu()">☰</button>
   <ul class="nav-links" id="navLinks">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="admissions.html">Admissions</a></li>
-    <li><a href="shop.html">Shop</a></li>
-    <li><a href="https://careers.sjvmschools.org">Job Vacancy</a></li>
-    <li><a href="gallery.html">Gallery</a></li>
-    <li><a href="branches.html">Branches</a></li>
-    <li><a href="founders.html">Founder</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="login.html" class="login-btn">Login</a></li>
+    <li><a href="https://sjvmschoools.org/index.html">Home</a></li>
+    <li><a href="https://sjvmschoools.org/admissions.html">Admissions</a></li>
+    <li><a href="https://sjvmschoools.org/shop.html">Shop</a></li>
+    <li><a href="index.html" class="highlight-menu">Career Opportunities</a></li>
+    <li><a href="https://sjvmschoools.org/gallery.html">Gallery</a></li>
+    <li><a href="https://sjvmschoools.org/branches.html">Branches</a></li>
+    <li><a href="https://sjvmschoools.org/founders.html">Founder</a></li>
+    <li><a href="https://sjvmschoools.org/contact.html">Contact</a></li>
+    <li><a href="https://sjvmschoools.org/login.html" class="login-btn">Login</a></li>
   </ul>
 </header>
 
@@ -137,27 +148,27 @@ header {
 <form id="careerForm" class="career-form" action="https://formspree.io/f/mwpngypr" method="POST" enctype="multipart/form-data">
   <h2>Job Application Form</h2>
 
-  <label>Name *</label>
-  <input type="text" name="name" required>
+  <label for="name">Name *</label>
+  <input id="name" type="text" name="name" required>
 
-  <label>Contact Number *</label>
-  <input type="text" name="contact" required>
+  <label for="contact">Contact Number *</label>
+  <input id="contact" type="text" name="contact" required>
 
-  <label>Email Address *</label>
-  <input type="email" name="email" required>
+  <label for="email">Email Address *</label>
+  <input id="email" type="email" name="email" required>
 
-  <label>Location *</label>
-  <input type="text" name="location" required>
+  <label for="location">Location *</label>
+  <input id="location" type="text" name="location" required>
 
-  <label>Applying for Branch of SJVM *</label>
-  <select name="branch" required>
+  <label for="branch">Applying for Branch of SJVM *</label>
+  <select id="branch" name="branch" required>
     <option value="">Select Branch</option>
     <option>Sy.no 35 Bandikodigenahalli, KIAL Main Road, BK Halli, Bagaluru Yelahanka, Bangalore-562149</option>
     <option>#10, Thirumala Dabha, Thirumala Nagara, Atturu Layout, Atturu, Yelahanka, Bangalore-560064</option>
   </select>
 
-  <label>Applying for Subject *</label>
-  <select name="subject" id="subject" required onchange="updateQualification()">
+  <label for="subject">Applying for Subject *</label>
+  <select id="subject" name="subject" required onchange="updateQualification()">
     <option value="">Select Subject</option>
     <option>ಕನ್ನಡ</option>
     <option>English</option>
@@ -167,21 +178,21 @@ header {
     <option>Social Science</option>
   </select>
 
-  <label>Qualification *</label>
-  <select name="qualification" id="qualification" required onchange="showOtherCourse()">
+  <label for="qualification">Qualification *</label>
+  <select id="qualification" name="qualification" required onchange="showOtherCourse()">
     <option value="">Select Qualification</option>
   </select>
 
   <div id="otherCourseDiv" style="display:none;">
-    <label>Other Course</label>
-    <input type="text" name="otherCourse">
+    <label for="otherCourse">Other Course</label>
+    <input id="otherCourse" type="text" name="otherCourse">
   </div>
 
-  <label>Graduated from University/College *</label>
-  <input type="text" name="university" required>
+  <label for="university">Graduated from University/College *</label>
+  <input id="university" type="text" name="university" required>
 
-  <label>Where did you hear about the vacancy *</label>
-  <select name="vacancySource" id="vacancySource" required onchange="checkReferral()">
+  <label for="vacancySource">Where did you hear about the vacancy *</label>
+  <select id="vacancySource" name="vacancySource" required onchange="checkReferral()">
     <option value="">Select</option>
     <option>Instagram</option>
     <option>Youtube</option>
@@ -193,8 +204,8 @@ header {
   </select>
 
   <div id="referralDiv" style="display:none;">
-    <label>Referral Type</label>
-    <select name="referralType" id="referralType" onchange="showReferralInfo()">
+    <label for="referralType">Referral Type</label>
+    <select id="referralType" name="referralType" onchange="showReferralInfo()">
       <option value="">Select</option>
       <option>Parent of SJVM</option>
       <option>Staff of SJVM</option>
@@ -202,36 +213,34 @@ header {
       <option>Alumni of SJVM</option>
     </select>
     <div id="referralInfo" style="display:none;">
-      <label>Referral Name *</label>
-      <input type="text" name="referralName">
-      <label>Referral Mobile (Optional)</label>
-      <input type="text" name="referralMobile">
+      <label for="referralName">Referral Name *</label>
+      <input id="referralName" type="text" name="referralName">
+      <label for="referralMobile">Referral Mobile (Optional)</label>
+      <input id="referralMobile" type="text" name="referralMobile">
     </div>
   </div>
 
-
-  <label>Gender *</label>
-  <select name="gender" required>
+  <label for="gender">Gender *</label>
+  <select id="gender" name="gender" required>
     <option value="">Select</option>
     <option>Male</option>
     <option>Female</option>
     <option>Other</option>
   </select>
 
-  <label>Are you a fresher?</label>
-  <select name="fresher" id="fresher" onchange="showExperience()">
+  <label for="fresher">Are you a fresher?</label>
+  <select id="fresher" name="fresher" onchange="showExperience()">
     <option value="">Select</option>
     <option>Yes</option>
     <option>No</option>
   </select>
 
   <div id="experienceDiv" style="display:none;">
-    <label>Previous School Name *</label>
-    <input type="text" name="prevSchool">
-    <label>Years of Experience *</label>
-    <input type="number" name="yearsExp" min="0">
+    <label for="prevSchool">Previous School Name *</label>
+    <input id="prevSchool" type="text" name="prevSchool">
+    <label for="yearsExp">Years of Experience *</label>
+    <input id="yearsExp" type="number" name="yearsExp" min="0">
   </div>
-
 
   <button type="submit">Submit Application</button>
 </form>
@@ -261,7 +270,7 @@ function updateQualification(){
       qual.appendChild(opt);
     });
   } else if(subject=="Science" || subject=="Mathematics"){
-    ["Bachelor of Education (B.Ed)","Master of Education (M.Ed)","Bachelor of Science (B.Sc)","Master of Science (M.Sc)","Bachoelor of Technology (B.Tech)","Master of Technology (M.Tech)"].forEach(q=>{
+    ["Bachelor of Education (B.Ed)","Master of Education (M.Ed)","Bachelor of Science (B.Sc)","Master of Science (M.Sc)","Bachelor of Technology (B.Tech)","Master of Technology (M.Tech)"].forEach(q=>{
       const opt=document.createElement("option"); 
       opt.value=q; opt.text=q;
       qual.appendChild(opt);
