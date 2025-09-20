@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SJVM Careers</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header Menu */
+header {
+  background-color: #1b2d3b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  flex-wrap: wrap;
+}
+.logo { display: flex; align-items: center; font-size: 1.6rem; font-weight: bold; }
+.logo img { height: 40px; margin-right: 10px; }
+.hamburger { display: none; font-size: 24px; background: none; color: white; border: none; cursor: pointer; }
+.nav-links { list-style: none; display: flex; gap: 1.5rem; }
+.nav-links li a { color: #eee; text-decoration: none; font-weight: 500; }
+.nav-links li a:hover { color: #ffd700; }
+.login-btn { background-color: #ffd700; color: black; padding: 0.5rem 1rem; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; }
+
+/* Popup */
+.popup {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.popup-content {
+  background: #111;
+  padding: 20px 25px;
+  border-radius: 15px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  animation: blastIn 1s ease-out;
+}
+.popup-content h2 { color: #ffd700; margin-bottom: 10px; }
+.popup-content p { margin-bottom: 20px; line-height: 1.5; }
+#closePopup {
+  background: #ffd700;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Form */
+.career-form {
+  max-width: 800px;
+  margin: 2rem auto;
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 12px;
+}
+.career-form h2 { color: #ffd700; text-align: center; margin-bottom: 20px; }
+.career-form label { display: block; margin-top: 10px; font-weight: 600; }
+.career-form input, .career-form select { width: 100%; padding: 8px; border-radius: 5px; border: none; margin-top: 5px; }
+.career-form input[type="file"] { color: #fff; }
+.career-form button {
+  margin-top: 20px;
+  background: #ffd700;
+  color: black;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Blast animation */
+@keyframes blastIn {
+  0% { transform: translateY(-200px) rotate(-20deg); opacity: 0; }
+  60% { transform: translateY(20px) rotate(5deg); opacity: 1; }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+/* Responsive nav */
+@media (max-width: 768px) {
+  .nav-links { display: none; flex-direction: column; width: 100%; background-color: #1b2d3b; padding: 1rem 0; }
+  .nav-links.show { display: flex; }
+  .hamburger { display: block; }
+}
+</style>
+</head>
+<body>
+
+<!-- Header Menu -->
+<header>
+  <div class="logo">
+    <img src="SJVM logo empowering mankind without background.png" alt="SJVM Logo" />
+    SJVM
+  </div>
+  <button class="hamburger" onclick="toggleMenu()">☰</button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="admissions.html">Admissions</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="https://careers.sjvmschools.org">Job Vacancy</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="branches.html">Branches</a></li>
+    <li><a href="founders.html">Founder</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="login.html" class="login-btn">Login</a></li>
+  </ul>
+</header>
+
+<!-- Popup -->
+<div id="popup" class="popup">
+  <div class="popup-content">
+    <h2>Welcome!</h2>
+    <p>Thank you for choosing SJVM for your career. Please fill out the application form below.</p>
+    <button id="closePopup">Proceed to Form</button>
+  </div>
+</div>
+
+<!-- Career Form -->
+<form id="careerForm" class="career-form" action="https://formspree.io/f/mwpngypr" method="POST" enctype="multipart/form-data">
+  <h2>Job Application Form</h2>
+
+  <label>Name *</label>
+  <input type="text" name="name" required>
+
+  <label>Contact Number *</label>
+  <input type="text" name="contact" required>
+
+  <label>Email Address *</label>
+  <input type="email" name="email" required>
+
+  <label>Location *</label>
+  <input type="text" name="location" required>
+
+  <label>Applying for Branch of SJVM *</label>
+  <select name="branch" required>
+    <option value="">Select Branch</option>
+    <option>Sy.no 35 Bandikodigenahalli, KIAL Main Road, BK Halli, Bagaluru Yelahanka, Bangalore-562149</option>
+    <option>#10, Thirumala Dabha, Thirumala Nagara, Atturu Layout, Atturu, Yelahanka, Bangalore-560064</option>
+  </select>
+
+  <label>Applying for Subject *</label>
+  <select name="subject" id="subject" required onchange="updateQualification()">
+    <option value="">Select Subject</option>
+    <option>ಕನ್ನಡ</option>
+    <option>English</option>
+    <option>हिन्दी</option>
+    <option>Mathematics</option>
+    <option>Science</option>
+    <option>Social Science</option>
+  </select>
+
+  <label>Qualification *</label>
+  <select name="qualification" id="qualification" required onchange="showOtherCourse()">
+    <option value="">Select Qualification</option>
+  </select>
+
+  <div id="otherCourseDiv" style="display:none;">
+    <label>Other Course</label>
+    <input type="text" name="otherCourse">
+  </div>
+
+  <label>Graduated from University/College *</label>
+  <input type="text" name="university" required>
+
+  <label>Where did you hear about the vacancy *</label>
+  <select name="vacancySource" id="vacancySource" required onchange="checkReferral()">
+    <option value="">Select</option>
+    <option>Instagram</option>
+    <option>Youtube</option>
+    <option>Facebook</option>
+    <option>X (Twitter)</option>
+    <option>Whatsapp Channel</option>
+    <option>Referral by others</option>
+    <option>Seen in Whatsapp Status</option>
+  </select>
+
+  <div id="referralDiv" style="display:none;">
+    <label>Referral Type</label>
+    <select name="referralType" id="referralType" onchange="showReferralInfo()">
+      <option value="">Select</option>
+      <option>Parent of SJVM</option>
+      <option>Staff of SJVM</option>
+      <option>Student of SJVM</option>
+      <option>Alumni of SJVM</option>
+    </select>
+    <div id="referralInfo" style="display:none;">
+      <label>Referral Name *</label>
+      <input type="text" name="referralName">
+      <label>Referral Mobile (Optional)</label>
+      <input type="text" name="referralMobile">
+    </div>
+  </div>
+
+
+  <label>Gender *</label>
+  <select name="gender" required>
+    <option value="">Select</option>
+    <option>Male</option>
+    <option>Female</option>
+    <option>Other</option>
+  </select>
+
+  <label>Are you a fresher?</label>
+  <select name="fresher" id="fresher" onchange="showExperience()">
+    <option value="">Select</option>
+    <option>Yes</option>
+    <option>No</option>
+  </select>
+
+  <div id="experienceDiv" style="display:none;">
+    <label>Previous School Name *</label>
+    <input type="text" name="prevSchool">
+    <label>Years of Experience *</label>
+    <input type="number" name="yearsExp" min="0">
+  </div>
+
+
+  <button type="submit">Submit Application</button>
+</form>
+
+<script>
+// Hamburger menu toggle
+function toggleMenu() {
+  document.getElementById("navLinks").classList.toggle("show");
+}
+
+// Popup logic
+document.getElementById("closePopup").addEventListener("click", function() {
+  document.getElementById("popup").style.display = "none";
+  document.getElementById("careerForm").scrollIntoView({behavior: "smooth"});
+});
+
+// Qualification logic
+function updateQualification(){
+  const subject = document.getElementById("subject").value;
+  const qual = document.getElementById("qualification");
+  qual.innerHTML = '<option value="">Select Qualification</option>';
+
+  if(subject=="ಕನ್ನಡ" || subject=="English" || subject=="हिन्दी"){
+    ["Bachelor of Arts (BA)","Master of Arts (MA)","Bachelor of Education (B.Ed)","Master of Education (M.Ed)"].forEach(q=>{
+      const opt=document.createElement("option"); 
+      opt.value=q; opt.text=q;
+      qual.appendChild(opt);
+    });
+  } else if(subject=="Science" || subject=="Mathematics"){
+    ["Bachelor of Education (B.Ed)","Master of Education (M.Ed)","Bachelor of Science (B.Sc)","Master of Science (M.Sc)","Bachoelor of Technology (B.Tech)","Master of Technology (M.Tech)"].forEach(q=>{
+      const opt=document.createElement("option"); 
+      opt.value=q; opt.text=q;
+      qual.appendChild(opt);
+    });
+  } else if(subject=="Social Science"){
+    ["Bachelor in Arts (BA)","Master of Arts (MA)"].forEach(q=>{
+      const opt=document.createElement("option"); 
+      opt.value=q; opt.text=q;
+      qual.appendChild(opt);
+    });
+  }
+}
+
+function showOtherCourse(){
+  document.getElementById("otherCourseDiv").style.display =
+    document.getElementById("qualification").value=="Other" ? "block" : "none";
+}
+
+function checkReferral(){
+  document.getElementById("referralDiv").style.display =
+    document.getElementById("vacancySource").value=="Referral by others" ? "block":"none";
+}
+
+function showReferralInfo(){
+  const val = document.getElementById("referralType").value;
+  document.getElementById("referralInfo").style.display = val ? "block":"none";
+}
+
+function showExperience(){
+  const val = document.getElementById("fresher").value;
+  document.getElementById("experienceDiv").style.display = (val=="No") ? "block":"none";
+}
+
+// Optional: show alert on submission
+document.getElementById("careerForm").addEventListener("submit", function(e){
+  alert("✅ Your application has been sent!");
+});
+</script>
+</body>
+</html>
